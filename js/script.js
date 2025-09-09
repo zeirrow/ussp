@@ -1,4 +1,11 @@
-    const featherIcons = `
+const siteName = "U.S.S.P.";
+const nameOutputs = document.querySelectorAll(".site-name-output");
+
+nameOutputs.forEach(el => {
+  el.textContent = siteName;
+});
+
+const featherIcons = `
         <symbol id="users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
             <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
             <circle cx="8.5" cy="7" r="4"></circle>
