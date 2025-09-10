@@ -4,9 +4,24 @@
   "main": "api/contact.js",
   "type": "module",
   "dependencies": {
-    "resend": "^4.6.0"
+    "resend": "^4.8.0"
   },
   "engines": {
     "node": "18.x"
-  }
+  },
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zeirrow/ussp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zeirrow/ussp/issues"
+  },
+  "homepage": "https://github.com/zeirrow/ussp#readme"
 }
