@@ -5,8 +5,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description"
+    content="Udodirim's Portfolio - Expert web design for salons, spas, and barbershops. Custom websites that grow bookings and showcase your style.">
+  <meta name="author" content="Udodirim">
 
-  <title>Udodirim's Portfolio - Salon & Spa Web Design</title>
+  <!-- Open Graph -->
+  <meta property="og:title" content="Udodirim | Salon & Spa Web Design Portfolio">
+  <meta property="og:description"
+    content="Expert web design services for salons, spas, and barbershops. Custom websites that grow your bookings and showcase your style.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://udodirim-portfolio.vercel.app/">
+  <meta property="og:image" content="https://ussp.vercel.app/images/portfolio-preview.png">
+  <meta property="og:site_name" content="Udodirim | Salon & Spa Web Design Portfolio">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Udodirim | Salon & Spa Web Design Portfolio">
+  <meta name="twitter:description"
+    content="Expert web design services for salons, spas, and barbershops. Custom websites that grow your bookings and showcase your style.">
+  <meta name="twitter:image" content="https://ussp.vercel.app/images/portfolio-preview.png">
+  <meta name="twitter:site" content="@udodirim101">
+  <meta name="twitter:creator" content="@udodirim101">
+
+  <!-- Favicon and Touch Icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="./images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16x16.png">
+  <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
+
+  <title>Udodirim | Salon & Spa Web Design Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +47,7 @@
   <!-- Navigation -->
   <header
     class="bg-white shadow-sm sticky top-0 z-10 opacity-95 backdrop-blur-md border-b border-gray-200 overflow-hidden">
-    <nav class="container mx-auto px-4 sm:px-8">
+    <nav class="mx-auto px-4 sm:px-8">
       <div class="flex justify-between items-center py-4">
         <a href="#" class="font-bold text-xl text-indigo-600 flex items-center space-x-3">
           <div
@@ -47,7 +75,7 @@
     </nav>
   </header>
 
-  <div class="container mx-auto p-4 sm:p-8 relative overflow-hidden">
+  <div class="mx-auto p-4 sm:p-8 relative overflow-hidden">
     <!-- Gradient Blob Elements -->
     <div class="gradient-blob blob-1"></div>
     <div class="gradient-blob blob-2"></div>
@@ -393,7 +421,7 @@
 
   <!-- Footer -->
   <footer class="bg-gray-800 text-white py-12 mt-12">
-    <div class="container mx-auto px-4">
+    <div class=" mx-auto px-4">
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
         <div>
           <h3 class="text-xl font-bold mb-4 site-name-output"></h3>
@@ -420,10 +448,16 @@
         <div>
           <h4 class="font-semibold mb-4">Connect</h4>
           <div class="flex space-x-4">
-            <a href="#" aria-label="Facebook" class="text-gray-400 hover:text-white transition">
+            <!-- <a href="#" aria-label="Facebook" class="text-gray-400 hover:text-white transition">
               <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path
                   d="M22.675 0H1.325C0.593 0 0 0.593 0 1.325v21.351C0 23.407 0.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463 0.099 2.795 0.143v3.24l-1.918 0.001c-1.504 0-1.795 0.715-1.795 1.763v2.313h3.587l-0.467 3.622h-3.12V24h6.116c0.73 0 1.323-0.593 1.323-1.325V1.325C24 0.593 23.407 0 22.675 0z" />
+              </svg>
+            </a> -->
+            <a href="#" aria-label="Instagram" class="text-gray-400 hover:text-white transition">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
               </svg>
             </a>
             <a href="https://wa.me/2349033951020" target="_blank" aria-label="WhatsApp" rel="noopener noreferrer"
@@ -433,16 +467,11 @@
                   d="M16 .667C7.64.667.667 7.64.667 16c0 2.828.745 5.594 2.167 8.024L2 32l8.21-2.775A15.2 15.2 0 0 0 16 31.333c8.36 0 15.333-6.973 15.333-15.333C31.333 7.64 24.36.667 16 .667zM16 28.667c-2.428 0-4.787-.667-6.826-1.933l-.486-.295-4.86 1.64 1.62-4.736-.316-.49C4.667 20.84 4 18.467 4 16 4 9.373 9.373 4 16 4c6.627 0 12 5.373 12 12s-5.373 12.667-12 12.667zm7.067-8.88c-.387-.193-2.294-1.134-2.647-1.267-.354-.133-.612-.2-.867.2-.254.4-1.04 1.267-1.274 1.527-.233.267-.467.3-.854.1-.387-.193-1.634-.6-3.11-1.914-1.147-1.027-1.92-2.293-2.147-2.68-.227-.387-.024-.6.17-.793.176-.174.387-.453.58-.68.193-.227.257-.38.387-.633.13-.254.065-.474-.033-.667-.1-.193-.867-2.087-1.187-2.854-.312-.747-.63-.647-.867-.66l-.74-.014c-.254 0-.667.1-1.014.474-.347.373-1.334 1.293-1.334 3.16 0 1.867 1.367 3.667 1.56 3.92.193.254 2.687 4.093 6.514 5.734.91.393 1.62.627 2.174.8.913.29 1.743.247 2.4.15.733-.11 2.294-.933 2.62-1.84.323-.907.323-1.687.23-1.847-.095-.16-.35-.257-.737-.45z" />
               </svg>
             </a>
-            <a href="#" aria-label="Twitter" class="text-gray-400 hover:text-white transition">
+            <a href="https://x.com/Udodirim101" target="_blank" rel="noopener noreferrer" aria-label="Twitter"
+              class="text-gray-400 hover:text-white transition">
               <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path
                   d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm6.066 9.645c.183 4.04-2.83 8.544-8.164 8.544-1.622 0-3.131-.476-4.402-1.291 1.524.18 3.045-.244 4.252-1.189-1.256-.023-2.317-.854-2.684-1.995.451.086.895.061 1.298-.049-1.381-.278-2.335-1.522-2.304-2.853.388.215.83.344 1.301.359-1.279-.855-1.641-2.544-.889-3.835 1.416 1.738 3.533 2.881 5.92 3.001-.419-1.796.944-3.527 2.799-3.527.825 0 1.572.349 2.096.907.654-.128 1.27-.368 1.824-.697-.215.671-.67 1.233-1.263 1.589.581-.07 1.135-.224 1.649-.453-.384.578-.87 1.084-1.433 1.489z" />
-              </svg>
-            </a>
-            <a href="#" aria-label="Instagram" class="text-gray-400 hover:text-white transition">
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
               </svg>
             </a>
           </div>
@@ -450,8 +479,9 @@
             <a href="mailto:udodirimwisdom@gmail.com"
               class="flex items-center gap-2 hover:text-indigo-500 transition-colors">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12H8m8 0l-8-8m8 8l-8 8" />
+                stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-18 8h18a2 2 0 002-2V6a2 2 0 
+         00-2-2H3a2 2 0 00-2 2v8a2 2 0 002 2z" />
               </svg>
               <span>udodirimwisdom@gmail.com</span>
             </a>
