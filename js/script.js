@@ -81,43 +81,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Add event listeners to all inputs
   inputs.forEach((input) => {
-    // Validate on input change
     input.addEventListener("blur", function () {
       validateField(this);
     });
 
-    // Remove error state when user starts typing
     input.addEventListener("input", function () {
       clearError(this);
     });
   });
 
   // Form submission
-  form.addEventListener("submit", function (e) {
+  form.addEventListener("submit", async function (e) {
     e.preventDefault();
 
     let isValid = true;
-
-    // Validate all fields
     inputs.forEach((input) => {
       if (!validateField(input)) {
         isValid = false;
       }
     });
 
-    if (isValid) {
-      // In a real application, you would submit the form to your server here
-      // For demonstration, we'll simulate a successful submission
-      simulateFormSubmission();
-    } else {
-      // Show general form error
+    if (!isValid) {
       document.getElementById("form-error").classList.remove("hidden");
       document.getElementById("form-success").classList.add("hidden");
-
-      // Shake form to indicate error
       form.classList.add("shake");
       setTimeout(() => form.classList.remove("shake"), 500);
+      return;
     }
+
+    await submitForm();
   });
 
   // Validate a single field
@@ -126,32 +118,26 @@ document.addEventListener("DOMContentLoaded", function () {
     const fieldName = field.name;
     const errorElement = document.getElementById(`${fieldName}-error`);
 
-    // Clear previous error
     clearError(field);
 
-    // Check required fields
     if (field.hasAttribute("required") && value === "") {
       showError(field, errorElement, "This field is required");
       return false;
     }
 
-    // Skip validation for empty non-required fields
     if (!field.hasAttribute("required") && value === "") {
       return true;
     }
 
-    // Validate against pattern
     if (!patterns[fieldName].test(value)) {
       showError(field, errorElement, errorMessages[fieldName]);
       return false;
     }
 
-    // Field is valid
     field.classList.add("border-green-500");
     return true;
   }
 
-  // Show error for a field
   function showError(field, errorElement, message) {
     field.classList.remove("border-gray-300", "border-green-500");
     field.classList.add("border-red-500");
@@ -160,7 +146,6 @@ document.addEventListener("DOMContentLoaded", function () {
     errorElement.classList.add("show");
   }
 
-  // Clear error for a field
   function clearError(field) {
     const fieldName = field.name;
     const errorElement = document.getElementById(`${fieldName}-error`);
@@ -171,38 +156,49 @@ document.addEventListener("DOMContentLoaded", function () {
     errorElement.textContent = "";
     errorElement.classList.remove("show");
 
-    // Clear general form errors when user starts correcting
     document.getElementById("form-error").classList.add("hidden");
   }
 
-  // Simulate form submission (replace with actual AJAX call)
-  function simulateFormSubmission() {
+  // Real API submission
+  async function submitForm() {
     const submitButton = form.querySelector('button[type="submit"]');
     const originalText = submitButton.textContent;
 
-    // Show loading state
     submitButton.disabled = true;
-    submitButton.innerHTML = "Sending...";
+    submitButton.textContent = "Sending...";
     submitButton.classList.add("opacity-75");
 
-    // Simulate API call
-    setTimeout(() => {
-      // Show success message
-      document.getElementById("form-success").classList.remove("hidden");
-      document.getElementById("form-error").classList.add("hidden");
-
-      // Reset form
-      form.reset();
-
-      // Remove validation classes
-      inputs.forEach((input) => {
-        input.classList.remove("border-green-500", "border-red-500");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name.value,
+          email: form.email.value,
+          business: form.business.value,
+          message: form.message.value,
+        }),
       });
 
-      // Reset button
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        document.getElementById("form-success").classList.remove("hidden");
+        document.getElementById("form-error").classList.add("hidden");
+        form.reset();
+        inputs.forEach((input) =>
+          input.classList.remove("border-green-500", "border-red-500")
+        );
+      } else {
+        throw new Error("Failed to send");
+      }
+    } catch (err) {
+      document.getElementById("form-error").classList.remove("hidden");
+      document.getElementById("form-success").classList.add("hidden");
+    } finally {
       submitButton.disabled = false;
       submitButton.textContent = originalText;
       submitButton.classList.remove("opacity-75");
-    }, 1500);
+    }
   }
 });
