@@ -1,14 +1,8 @@
 import { Resend } from "resend";
-import config from "../config/env.config.js";
 
-const resend = new Resend(config.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-export const sendEmailService = async ({
-  name,
-  email,
-  business,
-  message,
-}) => {
+export const sendEmailService = async ({ name, email, business, message }) => {
   try {
     const { data, error } = await resend.emails.send({
       from: "Zeirrow.dev <onboarding@resend.dev>",

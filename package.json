@@ -1,11 +1,12 @@
 {
-  "name": "my-express-api",
+  "name": "my-contact-api",
   "version": "1.0.0",
-  "main": "api/index.js",
+  "main": "api/contact.js",
+  "type": "module",
   "dependencies": {
-    "express": "^4.18.2",
-    "serverless-http": "^3.0.0",
-    "dotenv": "^17.0.1",
     "resend": "^4.6.0"
+  },
+  "engines": {
+    "node": "18.x"
   }
 }
