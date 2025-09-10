@@ -7,7 +7,7 @@ export const sendEmailService = async ({ name, email, business, message }) => {
     const { data, error } = await resend.emails.send({
       from: "Zeirrow.dev <onboarding@resend.dev>",
       to: "udodirimwisdom@gmail.com",
-      subject: `New project inquiry from ${name}`,
+      subject: `New project inquiry from ${name} of ${business} in U.S.S.P`,
       html: `
         <div style="font-family: sans-serif; padding: 1rem; background-color: #f9fafb; color: #111827;">
           <h2 style="color: #06b6d4;">New Project Inquiry</h2>

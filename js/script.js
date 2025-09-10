@@ -1,7 +1,7 @@
 const siteName = "U.S.S.P.";
 const nameOutputs = document.querySelectorAll(".site-name-output");
 
-nameOutputs.forEach(el => {
+nameOutputs.forEach((el) => {
   el.textContent = siteName;
 });
 
@@ -29,27 +29,180 @@ const featherIcons = `
             <line x1="12" y1="17" x2="12" y2="21"></line>
         </symbol>
     `;
-    document.body.insertAdjacentHTML('afterbegin', `<svg class="hidden">${featherIcons}</svg>`);
-    
-    // Animation for fade-in elements
-    document.addEventListener('DOMContentLoaded', function() {
-        const fadeElements = document.querySelectorAll('.fade-in');
-        
-        const fadeInOptions = {
-            threshold: 0.3,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const fadeInObserver = new IntersectionObserver(function(entries, observer) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, fadeInOptions);
-        
-        fadeElements.forEach(element => {
-            fadeInObserver.observe(element);
-        });
+document.body.insertAdjacentHTML(
+  "afterbegin",
+  `<svg class="hidden">${featherIcons}</svg>`
+);
+
+// Animation for fade-in elements
+document.addEventListener("DOMContentLoaded", function () {
+  const fadeElements = document.querySelectorAll(".fade-in");
+
+  const fadeInOptions = {
+    threshold: 0.3,
+    rootMargin: "0px 0px -50px 0px",
+  };
+
+  const fadeInObserver = new IntersectionObserver(function (entries, observer) {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
     });
+  }, fadeInOptions);
+
+  fadeElements.forEach((element) => {
+    fadeInObserver.observe(element);
+  });
+});
+
+// Form validation
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("contactForm");
+  const inputs = form.querySelectorAll("input, textarea");
+
+  // Validation patterns
+  const patterns = {
+    name: /^[a-zA-Z\s]{2,50}$/,
+    email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    business: /^[a-zA-Z0-9\s\-&',.]{0,100}$/,
+    message: /^[\s\S]{10,1000}$/,
+  };
+
+  // Error messages
+  const errorMessages = {
+    name: "Please enter a valid name (2-50 characters, letters and spaces only)",
+    email: "Please enter a valid email address",
+    business:
+      "Business name can only contain letters, numbers, spaces, and basic punctuation",
+    message: "Please enter a message between 10 and 1000 characters",
+  };
+
+  // Add event listeners to all inputs
+  inputs.forEach((input) => {
+    // Validate on input change
+    input.addEventListener("blur", function () {
+      validateField(this);
+    });
+
+    // Remove error state when user starts typing
+    input.addEventListener("input", function () {
+      clearError(this);
+    });
+  });
+
+  // Form submission
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    let isValid = true;
+
+    // Validate all fields
+    inputs.forEach((input) => {
+      if (!validateField(input)) {
+        isValid = false;
+      }
+    });
+
+    if (isValid) {
+      // In a real application, you would submit the form to your server here
+      // For demonstration, we'll simulate a successful submission
+      simulateFormSubmission();
+    } else {
+      // Show general form error
+      document.getElementById("form-error").classList.remove("hidden");
+      document.getElementById("form-success").classList.add("hidden");
+
+      // Shake form to indicate error
+      form.classList.add("shake");
+      setTimeout(() => form.classList.remove("shake"), 500);
+    }
+  });
+
+  // Validate a single field
+  function validateField(field) {
+    const value = field.value.trim();
+    const fieldName = field.name;
+    const errorElement = document.getElementById(`${fieldName}-error`);
+
+    // Clear previous error
+    clearError(field);
+
+    // Check required fields
+    if (field.hasAttribute("required") && value === "") {
+      showError(field, errorElement, "This field is required");
+      return false;
+    }
+
+    // Skip validation for empty non-required fields
+    if (!field.hasAttribute("required") && value === "") {
+      return true;
+    }
+
+    // Validate against pattern
+    if (!patterns[fieldName].test(value)) {
+      showError(field, errorElement, errorMessages[fieldName]);
+      return false;
+    }
+
+    // Field is valid
+    field.classList.add("border-green-500");
+    return true;
+  }
+
+  // Show error for a field
+  function showError(field, errorElement, message) {
+    field.classList.remove("border-gray-300", "border-green-500");
+    field.classList.add("border-red-500");
+
+    errorElement.textContent = message;
+    errorElement.classList.add("show");
+  }
+
+  // Clear error for a field
+  function clearError(field) {
+    const fieldName = field.name;
+    const errorElement = document.getElementById(`${fieldName}-error`);
+
+    field.classList.remove("border-red-500", "border-green-500");
+    field.classList.add("border-gray-300");
+
+    errorElement.textContent = "";
+    errorElement.classList.remove("show");
+
+    // Clear general form errors when user starts correcting
+    document.getElementById("form-error").classList.add("hidden");
+  }
+
+  // Simulate form submission (replace with actual AJAX call)
+  function simulateFormSubmission() {
+    const submitButton = form.querySelector('button[type="submit"]');
+    const originalText = submitButton.textContent;
+
+    // Show loading state
+    submitButton.disabled = true;
+    submitButton.innerHTML = "Sending...";
+    submitButton.classList.add("opacity-75");
+
+    // Simulate API call
+    setTimeout(() => {
+      // Show success message
+      document.getElementById("form-success").classList.remove("hidden");
+      document.getElementById("form-error").classList.add("hidden");
+
+      // Reset form
+      form.reset();
+
+      // Remove validation classes
+      inputs.forEach((input) => {
+        input.classList.remove("border-green-500", "border-red-500");
+      });
+
+      // Reset button
+      submitButton.disabled = false;
+      submitButton.textContent = originalText;
+      submitButton.classList.remove("opacity-75");
+    }, 1500);
+  }
+});
